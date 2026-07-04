@@ -17,6 +17,7 @@ import {
 } from '../../mocks/equipment.mock'
 import type { Equipment, EquipmentStatus, EquipmentType } from '../../types/equipment'
 import { Container } from './styles'
+import { useNavigate } from 'react-router-dom'
 
 export function EquipmentPage() {
   const [messageApi, contextHolder] = message.useMessage()
@@ -30,6 +31,7 @@ export function EquipmentPage() {
   const [equipmentInForm, setEquipmentInForm] = useState<Equipment>()
   const [equipmentInStatus, setEquipmentInStatus] = useState<Equipment>()
   const [equipmentToRemove, setEquipmentToRemove] = useState<Equipment>()
+  const navigate = useNavigate()
 
   function handleCreateEquipment() {
     setFormMode('create')
@@ -74,7 +76,11 @@ export function EquipmentPage() {
     setSelectedStatus(undefined)
     setSelectedType(undefined)
   }
+  
+  function handleViewEquipment(equipment: Equipment) {
+  navigate(`/equipment/${equipment.id}`)
 
+}
   // AULA 05 - parte prática:
   // Primeiro deixamos a lista sem filtro para a tela aparecer.
   const visibleEquipment = equipmentMock
@@ -105,11 +111,12 @@ export function EquipmentPage() {
 
         {/* Tabela principal: recebe a lista que, depois, será filtrada. */}
         <EquipmentTable
-          equipments={visibleEquipment}
-          onChangeStatusEquipment={setEquipmentInStatus}
-          onEditEquipment={handleEditEquipment}
-          onRemoveEquipment={setEquipmentToRemove}
-        />
+  equipments={visibleEquipment}
+  onChangeStatusEquipment={setEquipmentInStatus}
+  onEditEquipment={handleEditEquipment}
+  onRemoveEquipment={setEquipmentToRemove}
+  onViewEquipment={handleViewEquipment}
+/>
 
         <EquipmentFormModal
           equipment={equipmentInForm}

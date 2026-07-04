@@ -8,7 +8,7 @@ export const equipmentDetailsMock: EquipmentDetail[] = [
     id: 'EQP-001',
     name: 'Notebook Dell',
     type: 'Informática',
-    model: 'Latitude 5420',
+    model: 'Latitude 54',
     status: 'Disponível',
     location: 'Laboratório 01',
     lastUpdate: 'Hoje às 14:35',
